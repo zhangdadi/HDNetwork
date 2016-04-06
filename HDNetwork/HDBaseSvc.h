@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HDAPIResult.h"
 
 @interface HDBaseSvc : NSObject
 

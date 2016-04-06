@@ -18,7 +18,3 @@
 
 @end
 
-
-@protocol MemberModel <NSObject>
-
-@end

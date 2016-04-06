@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "TopicsSvc.h"
-#import "DemoSvc.h"
+#import "NodesSvc.h"
 
 @interface ViewController ()
 
@@ -21,14 +21,26 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     [TopicsSvc getHotWithCmpleted:^(HDAPIResult *result, NSArray<TitleModel> *list) {
-        NSLog(@"%@", list);
+        if (result.isSucc) {
+            NSLog(@"请求成功，获取的数据个数：%ld", list.count);
+        } else {
+            NSLog(@"请求失败:%@", result.msg);
+        }
     }];
     
-    DemoParam *param = [[DemoParam alloc] init];
-    param.ID = 2;
-    [DemoSvc getDataWithParam:param cmpleted:^(HDAPIResult *result, DemoModel *model) {
-         NSLog(@"%@", model);
+    
+    NodesParam *param = [[NodesParam alloc] init];
+    param.name = @"python";
+    [NodesSvc getShowWithParam:param cmpleted:^(HDAPIResult *result, NodesModel *model) {
+        if (result.isSucc) {
+            NSLog(@"请求成功，获取的数据：%@", model);
+        } else {
+            NSLog(@"请求失败:%@", result.msg);
+        }
+
+
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

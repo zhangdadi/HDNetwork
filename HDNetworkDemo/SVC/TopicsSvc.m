@@ -19,9 +19,9 @@
     }).start();
 }
 
-+ (instancetype)getLatestWithCmpleted:(void(^)(HDAPIResult *result, HotModel *model))completed {
++ (instancetype)getLatestWithCmpleted:(void(^)(HDAPIResult *result, TitleModel *model))completed {
     return [HDBaseSvc getUrl:@"api/topics/latest.json"].completionBlock(^(HDAPIResult *result) {
-        HotModel *model = [HotModel parse:result.data];
+        TitleModel *model = [TitleModel parse:result.data];
         completed(result, model);
     }).start();
 }

@@ -18,13 +18,12 @@
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *content_rendered;
 @property (nonatomic, assign) NSInteger replies;
-@property (nonatomic, strong) NSDictionary <MemberModel> *member;
-@property (nonatomic, strong) NSDictionary <NodeModel> *node;
+@property (nonatomic, strong) MemberModel *member;
+@property (nonatomic, strong) NodeModel *node;
 @property (nonatomic, assign) NSInteger created;
 @property (nonatomic, assign) NSInteger last_modified;
 @property (nonatomic, assign) NSInteger last_touched;
 
 @end
 
-@protocol TitleModel <NSObject>
-@end
+@protocol TitleModel <NSObject> @end

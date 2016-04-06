@@ -23,7 +23,3 @@
 
 @end
 
-
-@protocol NodeModel <NSObject>
-
-@end

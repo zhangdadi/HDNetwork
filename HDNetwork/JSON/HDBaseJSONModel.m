@@ -33,8 +33,8 @@
 +(id)parseArray:(NSArray*)arrDict{
     
     if(![arrDict isKindOfClass:[NSArray class]]) return nil;
-    
-    NSArray *list = (NSArray*)[self arrayOfModelsFromDictionaries:arrDict];
+    NSError *error = nil;
+    NSArray *list = (NSArray*)[self arrayOfModelsFromDictionaries:arrDict error:&error];	
     return list;
 }
 
