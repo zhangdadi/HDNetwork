@@ -37,10 +37,7 @@
         } else {
             NSLog(@"请求失败:%@", result.msg);
         }
-
-
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning {

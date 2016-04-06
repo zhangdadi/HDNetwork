@@ -11,8 +11,7 @@
 
 @implementation HDAPIResult
 
-+ (instancetype)parse:(id)jsonData
-{
++ (instancetype)parse:(id)jsonData {
     if (!jsonData) return nil;
     
     HDAPIResult *result = [[HDAPIResult alloc] init];

@@ -18,7 +18,6 @@ typedef NS_ENUM(int, HttpType) {
     HttpTypePost
 };
 
-
 @interface HDRequest ()
 {
     HDBaseJSONParam *_param;
@@ -109,8 +108,7 @@ typedef NS_ENUM(int, HttpType) {
          params:(NSDictionary*) params
       completed:(void (^)(HDAPIResult *result))completed {
     
-    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[self getBaseURL]];
-
+    AFHTTPRequestOperationManager *manager = [self manager];
     [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         HDAPIResult *result = [[HDAPIResult alloc] init];
         result.data = responseObject;
@@ -129,8 +127,7 @@ typedef NS_ENUM(int, HttpType) {
          params:(NSDictionary*) params
       completed:(void (^)(HDAPIResult *result))completed {
     
-    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[self getBaseURL]];
-    
+    AFHTTPRequestOperationManager *manager = [self manager];
     [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         HDAPIResult *result = [[HDAPIResult alloc] init];
         result.data = responseObject;
@@ -144,17 +141,17 @@ typedef NS_ENUM(int, HttpType) {
     
 }
 
-#pragma mark - 私有方法
-
-+ (NSURL *)getBaseURL {
-    return [NSURL URLWithString:[HDNetworkConfig sharedInstance].baseUrl];
-}
-
-+ (NSDictionary *)getHttpHeadDicta {
-    return [HDNetworkConfig sharedInstance].httpHeadDict;
-}
-
 #pragma mark -
+
++ (instancetype)manager {
+    static id manager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[HDNetworkConfig sharedInstance].baseUrl]];
+    });
+    return manager;
+}
+
 
 - (HDBaseJSONParam *)getParam {
     return _param;
