@@ -2,47 +2,44 @@
 //  ViewController.m
 //  HDNetworkDemo
 //
-//  Created by Aaron on 16/4/1.
-//  Copyright © 2016年 HD. All rights reserved.
+//  Created by zhangdadi on 2022/4/19.
 //
 
 #import "ViewController.h"
-#import "TopicsSvc.h"
-#import "NodesSvc.h"
+#import "HDNetwork.h"
+#import "DemoParam.h"
+#import "AFNetworking.h"
 
 @interface ViewController ()
-
+@property(nonatomic, strong) HDNWManager *pageManager;
+@property(nonatomic, strong) UIButton *addButton;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
     
-    [TopicsSvc getHotWithCmpleted:^(HDAPIResult *result, NSArray<TitleModel> *list) {
-        if (result.isSucc) {
-            NSLog(@"请求成功，获取的数据个数：%ld", list.count);
-        } else {
-            NSLog(@"请求失败:%@", result.msg);
-        }
-    }];
+//https://api-wanbaolou.xoyo.com/api/buyer/goods/list?game_id=jx3&zone_id=z01&server_id=gate0126&game=jx3&page=1&size=10&goods_type=1
+//    self.pageManager = [HDNWManager get].url(@"buyer/goods/list").paramDict(@{@"game_id":@"jx3",@"zone_id":@"z01", @"server_id":@"gate0126"});
+    
+    self.pageManager = [HDNWManager get].url(@"buyer/goods/list").paramDict(@{@"game_id":@"jx3",@"zone_id":@"z01", @"server_id":@"gate0126"}).completionBlock(^(HDNWAPIResult *result, id data) {
+        NSLog(@"%@", data);
+    }).start(nil);
     
     
-    NodesParam *param = [[NodesParam alloc] init];
-    param.name = @"python";
-    [NodesSvc getShowWithParam:param cmpleted:^(HDAPIResult *result, NodesModel *model) {
-        if (result.isSucc) {
-            NSLog(@"请求成功，获取的数据：%@", model);
-        } else {
-            NSLog(@"请求失败:%@", result.msg);
-        }
-    }];
+    DemoParam *param = DemoParam.new;
+    param.pageIndex = 1;
+    param.game_id = @"jx3";
+    param.zone_id = @"z01";
+    param.server_id = @"gate0126";
+    self.pageManager = [HDNWManager get].url(@"buyer/goods/list").param(param).completionBlock(^(id<HDNWAPIResultProtocol> result, id data) {
+        NSLog(@"%@", data);
+
+    }).start(nil);
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

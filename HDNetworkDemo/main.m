@@ -2,15 +2,17 @@
 //  main.m
 //  HDNetworkDemo
 //
-//  Created by Aaron on 16/4/1.
-//  Copyright © 2016年 HD. All rights reserved.
+//  Created by zhangdadi on 2022/4/19.
 //
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
 int main(int argc, char * argv[]) {
+    NSString * appDelegateClassName;
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        // Setup code that might create autoreleased objects goes here.
+        appDelegateClassName = NSStringFromClass([AppDelegate class]);
     }
+    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
 }
