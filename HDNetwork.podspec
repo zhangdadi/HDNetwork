@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/zhangdadi/HDNetwork'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'zhangdadi' => 'z_dadi@163.com' }
-  s.source           = { :git => 'https://github.com/yourusername/YourPodName.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/zhangdadi/HDNetwork', :tag => s.version.to_s }
   s.ios.deployment_target = '13.0'
   s.dependency 'YYModel', '~> 1.0.4'
   s.dependency 'AFNetworking', '~> 4.0.1'
