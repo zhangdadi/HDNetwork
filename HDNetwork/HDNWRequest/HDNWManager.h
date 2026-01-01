@@ -10,7 +10,7 @@
 #import "HDNWConfig.h"
 
 @class HDNWManager;
-typedef void (^HDNWCompletionBlock)(id<HDNWAPIResultProtocol> result, id data);
+typedef void (^HDNWCompletionBlock)(HDNWAPIResult<HDNWAPIResultProtocol> *result, id data);
 
 @protocol HDNWManagerProtocol  <NSObject>
 
