@@ -18,9 +18,31 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    HDNWConfig.shared.apiBaseUrl = @"https://api-wanbaolou.xoyo.com/api/";
+    [self configNetwork];
 
     return YES;
+}
+
+/// 配置网络请求库
+- (void)configNetwork {
+    HDNWConfig.shared.apiBaseUrl = @"https://kna8u0t.nafasslive.com/nafass/";
+    HDNWConfig.shared.resultConfig.msgName = @"message";
+    HDNWConfig.shared.resultConfig.codeValueSucceed = 200;
+    
+    NSMutableDictionary *dict = NSMutableDictionary.dictionary;
+    [dict setValue:@"ma" forKey:@"countryCode"];
+    [dict setValue:@"258895258" forKey:@"phone"];
+    [dict setValue:@"1" forKey:@"businessType"];
+    [dict setValue:@"2" forKey:@"channelType"];
+    [dict setValue:@"1.0.0" forKey:@"appVersion"];
+    [dict setValue:@"ios" forKey:@"appVersion"];
+    [dict setValue:@"5412561122" forKey:@"deviceId"];
+    [dict setValue:@"en" forKey:@"language"];
+    
+    [HDNWManager post].url(@"verification/code/get").param(dict).completionBlock(^(id<HDNWAPIResultProtocol> result, id data) {
+        NSLog(@"%@", data);
+
+    }).start(nil);
 }
 
 
