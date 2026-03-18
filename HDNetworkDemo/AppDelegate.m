@@ -35,7 +35,7 @@
     [dict setValue:@"1" forKey:@"businessType"];
     [dict setValue:@"2" forKey:@"channelType"];
     [dict setValue:@"1.0.0" forKey:@"appVersion"];
-    [dict setValue:@"ios" forKey:@"appVersion"];
+    [dict setValue:@"ios" forKey:@"os"];
     [dict setValue:@"5412561122" forKey:@"deviceId"];
     [dict setValue:@"en" forKey:@"language"];
     
